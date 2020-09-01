@@ -268,11 +268,19 @@
     "named": true,
     "subtypes": [
       {
+        "type": "api_struct_specifier",
+        "named": true
+      },
+      {
         "type": "enum_specifier",
         "named": true
       },
       {
         "type": "macro_type_specifier",
+        "named": true
+      },
+      {
+        "type": "map_struct_specifier",
         "named": true
       },
       {
@@ -296,6 +304,72 @@
         "named": true
       }
     ]
+  },
+  {
+    "type": "EXTERN_declaration",
+    "named": true,
+    "fields": {
+      "declarator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_declarator",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_type_specifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "_expression",
+            "named": true
+          },
+          {
+            "type": "initializer_list",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_declaration",
+          "named": true
+        },
+        {
+          "type": "attribute_specifier",
+          "named": true
+        },
+        {
+          "type": "ms_declspec_modifier",
+          "named": true
+        },
+        {
+          "type": "storage_class_specifier",
+          "named": true
+        },
+        {
+          "type": "type_qualifier",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "abstract_array_declarator",
@@ -399,6 +473,25 @@
       "types": [
         {
           "type": "type_qualifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "api_struct_specifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
           "named": true
         }
       ]
@@ -1025,6 +1118,10 @@
       "required": false,
       "types": [
         {
+          "type": "EXTERN_declaration",
+          "named": true
+        },
+        {
           "type": "_statement",
           "named": true
         },
@@ -1195,6 +1292,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "EXTERN_declaration",
+          "named": true
+        },
         {
           "type": "_statement",
           "named": true
@@ -1606,6 +1707,10 @@
         {
           "type": "attribute_specifier",
           "named": true
+        },
+        {
+          "type": "nvim_attribute_specifier",
+          "named": true
         }
       ]
     }
@@ -1902,6 +2007,21 @@
     }
   },
   {
+    "type": "map_struct_specifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "type_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "ms_based_modifier",
     "named": true,
     "fields": {},
@@ -1967,6 +2087,21 @@
     "type": "ms_unaligned_ptr_modifier",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "nvim_attribute_specifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "parameter_declaration",
@@ -2290,6 +2425,10 @@
       "required": false,
       "types": [
         {
+          "type": "EXTERN_declaration",
+          "named": true
+        },
+        {
           "type": "_statement",
           "named": true
         },
@@ -2352,6 +2491,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "EXTERN_declaration",
+          "named": true
+        },
         {
           "type": "_statement",
           "named": true
@@ -2505,6 +2648,10 @@
       "required": false,
       "types": [
         {
+          "type": "EXTERN_declaration",
+          "named": true
+        },
+        {
           "type": "_statement",
           "named": true
         },
@@ -2592,6 +2739,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "EXTERN_declaration",
+          "named": true
+        },
         {
           "type": "_statement",
           "named": true
@@ -2886,6 +3037,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "EXTERN_declaration",
+          "named": true
+        },
         {
           "type": "_statement",
           "named": true
@@ -3346,11 +3501,115 @@
     "named": false
   },
   {
+    "type": "ArrayOf",
+    "named": false
+  },
+  {
+    "type": "DictionaryOf",
+    "named": false
+  },
+  {
+    "type": "EXTERN",
+    "named": false
+  },
+  {
+    "type": "FUNC_API_DEPRECATED_SINCE",
+    "named": false
+  },
+  {
+    "type": "FUNC_API_FAST",
+    "named": false
+  },
+  {
+    "type": "FUNC_API_NOEXPORT",
+    "named": false
+  },
+  {
+    "type": "FUNC_API_REMOTE_ONLY",
+    "named": false
+  },
+  {
+    "type": "FUNC_API_SINCE",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_ALLOC_ALIGN",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_ALLOC_SIZE",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_ALLOC_SIZE_PROD",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_ALWAYS_INLINE",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_CONST",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_MALLOC",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_NONNULL_ALL",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_NONNULL_ARG",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_NONNULL_RET",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_NORETURN",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_NO_SANITIZE_UNDEFINED",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_PRINTF",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_PURE",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_UNUSED",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_WARN_UNUSED_RESULT",
+    "named": false
+  },
+  {
+    "type": "INIT",
+    "named": false
+  },
+  {
+    "type": "KeyDictionary",
+    "named": false
+  },
+  {
     "type": "L\"",
     "named": false
   },
   {
     "type": "L'",
+    "named": false
+  },
+  {
+    "type": "Map",
     "named": false
   },
   {

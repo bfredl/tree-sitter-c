@@ -26,6 +26,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "EXTERN_declaration"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_statement"
         },
         {
@@ -1735,6 +1739,77 @@
         }
       ]
     },
+    "EXTERN_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "EXTERN"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_declaration_specifiers"
+        },
+        {
+          "type": "FIELD",
+          "name": "declarator",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_declarator"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "INIT"
+                },
+                {
+                  "type": "STRING",
+                  "value": "("
+                },
+                {
+                  "type": "STRING",
+                  "value": "="
+                },
+                {
+                  "type": "FIELD",
+                  "name": "value",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "initializer_list"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_expression"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "STRING",
+                  "value": ")"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
     "type_definition": {
       "type": "SEQ",
       "members": [
@@ -2101,6 +2176,147 @@
         {
           "type": "SYMBOL",
           "name": "ms_signed_ptr_modifier"
+        }
+      ]
+    },
+    "nvim_attribute_specifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "FUNC_ATTR_MALLOC"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_ATTR_ALLOC_ALIGN"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_ATTR_PURE"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_ATTR_CONST"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_ATTR_WARN_UNUSED_RESULT"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_ATTR_ALWAYS_INLINE"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_ATTR_UNUSED"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_ATTR_NONNULL_ALL"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_ATTR_NONNULL_RET"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_ATTR_NORETURN"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_ATTR_NO_SANITIZE_UNDEFINED"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_API_FAST"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_API_NOEXPORT"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_API_REMOTE_ONLY"
+            },
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "FUNC_ATTR_ALLOC_SIZE"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "FUNC_ATTR_ALLOC_SIZE_PROD"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "FUNC_ATTR_NONNULL_ARG"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "FUNC_ATTR_PRINTF"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "FUNC_API_SINCE"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": "FUNC_API_DEPRECATED_SINCE"
+                    }
+                  ]
+                },
+                {
+                  "type": "STRING",
+                  "value": "("
+                },
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SEQ",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "number_literal"
+                        },
+                        {
+                          "type": "REPEAT",
+                          "content": {
+                            "type": "SEQ",
+                            "members": [
+                              {
+                                "type": "STRING",
+                                "value": ","
+                              },
+                              {
+                                "type": "SYMBOL",
+                                "name": "number_literal"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "BLANK"
+                    }
+                  ]
+                },
+                {
+                  "type": "STRING",
+                  "value": ")"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -2644,8 +2860,17 @@
           {
             "type": "REPEAT",
             "content": {
-              "type": "SYMBOL",
-              "name": "attribute_specifier"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "attribute_specifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "nvim_attribute_specifier"
+                }
+              ]
             }
           }
         ]
@@ -3087,6 +3312,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "api_struct_specifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "map_struct_specifier"
+        },
+        {
+          "type": "SYMBOL",
           "name": "macro_type_specifier"
         },
         {
@@ -3367,6 +3600,116 @@
         {
           "type": "STRING",
           "value": "}"
+        }
+      ]
+    },
+    "api_struct_specifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "ArrayOf"
+            },
+            {
+              "type": "STRING",
+              "value": "DictionaryOf"
+            },
+            {
+              "type": "STRING",
+              "value": "KeyDictionary"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_type_identifier"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "number_literal"
+                    }
+                  ]
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": ","
+                      },
+                      {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "_type_identifier"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "number_literal"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "map_struct_specifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Map"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_type_identifier"
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_type_identifier"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
