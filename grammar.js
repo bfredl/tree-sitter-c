@@ -96,6 +96,7 @@ module.exports = grammar({
       alias($._old_style_function_definition, $.function_definition),
       $.linkage_specification,
       $.declaration,
+      $.EXTERN_declaration,
       $._statement,
       $.attributed_statement,
       $.type_definition,
@@ -249,6 +250,20 @@ module.exports = grammar({
       $.init_declarator,
     ))),
 
+    EXTERN_declaration: $ => seq(
+      'EXTERN',
+      $._declaration_specifiers,
+      field('declarator', $._declarator),
+      optional(seq(
+        'INIT',
+        '(',
+        '=',
+        field('value', choice($.initializer_list, $._expression)),
+        ')'
+      )),
+      ';',
+    ),
+
     type_definition: $ => seq(
       optional('__extension__'),
       'typedef',
@@ -337,6 +352,40 @@ module.exports = grammar({
       $.ms_restrict_modifier,
       $.ms_unsigned_ptr_modifier,
       $.ms_signed_ptr_modifier,
+    ),
+
+    nvim_attribute_specifier: $ => seq(
+      choice(
+        'FUNC_ATTR_MALLOC',
+        'FUNC_ATTR_ALLOC_ALIGN',
+        'FUNC_ATTR_PURE',
+        'FUNC_ATTR_CONST',
+        'FUNC_ATTR_WARN_UNUSED_RESULT',
+        'FUNC_ATTR_ALWAYS_INLINE',
+        'FUNC_ATTR_UNUSED',
+        'FUNC_ATTR_NONNULL_ALL',
+        'FUNC_ATTR_NONNULL_RET',
+        'FUNC_ATTR_NORETURN',
+        'FUNC_ATTR_NO_SANITIZE_UNDEFINED',
+        'FUNC_API_FAST',
+        'FUNC_API_NOEXPORT',
+        'FUNC_API_REMOTE_ONLY',
+        'FUNC_API_LUA_ONLY',
+        'FUNC_API_CHECK_TEXTLOCK',
+        seq(
+          choice(
+            'FUNC_ATTR_ALLOC_SIZE',
+            'FUNC_ATTR_ALLOC_SIZE_PROD',
+            'FUNC_ATTR_NONNULL_ARG',
+            'FUNC_ATTR_PRINTF',
+            'FUNC_API_SINCE',
+            'FUNC_API_DEPRECATED_SINCE'
+          ),
+          '(',
+          commaSep($.number_literal),
+          ')'
+        ),
+      ),
     ),
 
     declaration_list: $ => seq(
@@ -447,7 +496,7 @@ module.exports = grammar({
         field('declarator', $._declarator),
         field('parameters', $.parameter_list),
         optional($.gnu_asm_expression),
-        repeat($.attribute_specifier),
+        repeat(choice($.attribute_specifier, $.nvim_attribute_specifier)),
       )),
     function_field_declarator: $ => prec(1, seq(
       field('declarator', $._field_declarator),
@@ -537,6 +586,8 @@ module.exports = grammar({
       $.struct_specifier,
       $.union_specifier,
       $.enum_specifier,
+      $.api_struct_specifier,
+      $.map_struct_specifier,
       $.macro_type_specifier,
       $.sized_type_specifier,
       $.primitive_type,
@@ -594,6 +645,22 @@ module.exports = grammar({
       commaSep($.enumerator),
       optional(','),
       '}',
+    ),
+
+    api_struct_specifier: $ => seq(
+      choice('ArrayOf', 'DictionaryOf', 'KeyDictionary'),
+      '(',
+      commaSep(choice($._type_identifier, $.number_literal)),
+      ')',
+    ),
+
+    map_struct_specifier: $ => seq(
+      'Map',
+      '(',
+      $._type_identifier,
+      ',',
+      $._type_identifier,
+      ')',
     ),
 
     struct_specifier: $ => prec.right(seq(
