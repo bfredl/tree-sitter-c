@@ -252,6 +252,10 @@
     "named": true,
     "subtypes": [
       {
+        "type": "api_struct_specifier",
+        "named": true
+      },
+      {
         "type": "enum_specifier",
         "named": true
       },
@@ -383,6 +387,25 @@
       "types": [
         {
           "type": "type_qualifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "api_struct_specifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        },
+        {
+          "type": "type_identifier",
           "named": true
         }
       ]
@@ -1413,6 +1436,10 @@
         {
           "type": "attribute_specifier",
           "named": true
+        },
+        {
+          "type": "nvim_attribute_specifier",
+          "named": true
         }
       ]
     }
@@ -1770,6 +1797,21 @@
     "type": "ms_unaligned_ptr_modifier",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "nvim_attribute_specifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "number_literal",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "parameter_declaration",
@@ -3129,6 +3171,98 @@
   },
   {
     "type": "?",
+    "named": false
+  },
+  {
+    "type": "ArrayOf",
+    "named": false
+  },
+  {
+    "type": "DictionaryOf",
+    "named": false
+  },
+  {
+    "type": "EXTERN",
+    "named": false
+  },
+  {
+    "type": "FUNC_API_DEPRECATED_SINCE",
+    "named": false
+  },
+  {
+    "type": "FUNC_API_FAST",
+    "named": false
+  },
+  {
+    "type": "FUNC_API_NOEXPORT",
+    "named": false
+  },
+  {
+    "type": "FUNC_API_REMOTE_ONLY",
+    "named": false
+  },
+  {
+    "type": "FUNC_API_SINCE",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_ALLOC_ALIGN",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_ALLOC_SIZE",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_ALLOC_SIZE_PROD",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_ALWAYS_INLINE",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_CONST",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_MALLOC",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_NONNULL_ALL",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_NONNULL_ARG",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_NONNULL_RET",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_NORETURN",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_NO_SANITIZE_UNDEFINED",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_PRINTF",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_PURE",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_UNUSED",
+    "named": false
+  },
+  {
+    "type": "FUNC_ATTR_WARN_UNUSED_RESULT",
     "named": false
   },
   {
