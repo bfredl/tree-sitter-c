@@ -3080,6 +3080,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "map_struct_specifier"
+        },
+        {
+          "type": "SYMBOL",
           "name": "macro_type_specifier"
         },
         {
@@ -3376,6 +3380,10 @@
             {
               "type": "STRING",
               "value": "DictionaryOf"
+            },
+            {
+              "type": "STRING",
+              "value": "KeyDictionary"
             }
           ]
         },
@@ -3433,6 +3441,35 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "map_struct_specifier": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "Map"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_type_identifier"
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_type_identifier"
         },
         {
           "type": "STRING",

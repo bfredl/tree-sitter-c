@@ -475,6 +475,7 @@ module.exports = grammar({
       $.union_specifier,
       $.enum_specifier,
       $.api_struct_specifier,
+      $.map_struct_specifier,
       $.macro_type_specifier,
       $.sized_type_specifier,
       $.primitive_type,
@@ -530,11 +531,21 @@ module.exports = grammar({
     ),
 
     api_struct_specifier: $ => seq(
-      choice('ArrayOf', 'DictionaryOf'),
+      choice('ArrayOf', 'DictionaryOf', 'KeyDictionary'),
       '(',
       commaSep(choice($._type_identifier, $.number_literal)),
       ')',
     ),
+
+    map_struct_specifier: $ => seq(
+      'Map',
+      '(',
+      $._type_identifier,
+      ',',
+      $._type_identifier,
+      ')',
+    ),
+
 
     struct_specifier: $ => seq(
       'struct',

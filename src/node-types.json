@@ -264,6 +264,10 @@
         "named": true
       },
       {
+        "type": "map_struct_specifier",
+        "named": true
+      },
+      {
         "type": "primitive_type",
         "named": true
       },
@@ -1729,6 +1733,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "map_struct_specifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "type_identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3266,11 +3285,19 @@
     "named": false
   },
   {
+    "type": "KeyDictionary",
+    "named": false
+  },
+  {
     "type": "L\"",
     "named": false
   },
   {
     "type": "L'",
+    "named": false
+  },
+  {
+    "type": "Map",
     "named": false
   },
   {
