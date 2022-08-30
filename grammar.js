@@ -320,6 +320,8 @@ module.exports = grammar({
         'FUNC_API_FAST',
         'FUNC_API_NOEXPORT',
         'FUNC_API_REMOTE_ONLY',
+        'FUNC_API_LUA_ONLY',
+        'FUNC_API_CHECK_TEXTLOCK',
         seq(
           choice(
             'FUNC_ATTR_ALLOC_SIZE',
@@ -929,7 +931,7 @@ module.exports = grammar({
       field('arguments', $.argument_list)
     )),
 
-    argument_list: $ => seq('(', commaSep($._expression), ')'),
+    argument_list: $ => seq('(', commaSep(choice($._expression, $.compound_statement)), ')'),
 
     field_expression: $ => seq(
       prec(PREC.FIELD, seq(

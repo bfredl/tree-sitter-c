@@ -510,6 +510,10 @@
           "named": true
         },
         {
+          "type": "compound_statement",
+          "named": true
+        },
+        {
           "type": "preproc_defined",
           "named": true
         }
@@ -3513,11 +3517,19 @@
     "named": false
   },
   {
+    "type": "FUNC_API_CHECK_TEXTLOCK",
+    "named": false
+  },
+  {
     "type": "FUNC_API_DEPRECATED_SINCE",
     "named": false
   },
   {
     "type": "FUNC_API_FAST",
+    "named": false
+  },
+  {
+    "type": "FUNC_API_LUA_ONLY",
     "named": false
   },
   {

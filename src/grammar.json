@@ -2242,6 +2242,14 @@
               "value": "FUNC_API_REMOTE_ONLY"
             },
             {
+              "type": "STRING",
+              "value": "FUNC_API_LUA_ONLY"
+            },
+            {
+              "type": "STRING",
+              "value": "FUNC_API_CHECK_TEXTLOCK"
+            },
+            {
               "type": "SEQ",
               "members": [
                 {
@@ -5872,8 +5880,17 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "SYMBOL",
-                  "name": "_expression"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "SYMBOL",
+                      "name": "_expression"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "compound_statement"
+                    }
+                  ]
                 },
                 {
                   "type": "REPEAT",
@@ -5885,8 +5902,17 @@
                         "value": ","
                       },
                       {
-                        "type": "SYMBOL",
-                        "name": "_expression"
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "_expression"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "compound_statement"
+                          }
+                        ]
                       }
                     ]
                   }
