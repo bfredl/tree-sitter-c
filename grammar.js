@@ -1017,7 +1017,7 @@ module.exports = grammar({
 
     concatenated_string: $ => seq(
       $.string_literal,
-      repeat1($.string_literal)
+      repeat1(choice($.string_literal, $.identifier))
     ),
 
     string_literal: $ => seq(
